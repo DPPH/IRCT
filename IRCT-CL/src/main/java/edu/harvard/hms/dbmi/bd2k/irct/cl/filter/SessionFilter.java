@@ -44,6 +44,7 @@ public class SessionFilter implements Filter {
 		logger.debug("doFilter() Starting");
 		HttpServletRequest request = (HttpServletRequest) req;
 
+
 		// If processing URL /securityService/*, we are creating a session/secureSession
 		if (request.getRequestURI().endsWith("/securityService/startSession") || request.getRequestURI().endsWith("/securityService/createKey")) {
 			// Do Nothing
@@ -85,7 +86,7 @@ public class SessionFilter implements Filter {
                             user = sc.ensureUserExists(Utilities.extractUserFromTokenIntrospection((HttpServletRequest) req, this.userField, irctApp.getToken_introspection_url(), irctApp.getToken_introspection_token()));
                         } else{
     						user = sc.ensureUserExists(Utilities.extractEmailFromJWT((HttpServletRequest) req, irctApp.getClientSecret(), this.userField));
-                        }
+						}
 				}
 
 				if (user == null)

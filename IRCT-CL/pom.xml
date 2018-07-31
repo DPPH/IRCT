@@ -46,6 +46,15 @@
 		</repository>
 	</repositories>
 	<dependencies>
+
+		<!--
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-servlet</artifactId>
+			<version>2.6</version>
+		</dependency>
+		-->
+
 		<dependency>
 			<groupId>edu.harvard.hms.dbmi.bd2k.irct</groupId>
 			<artifactId>IRCT-RI</artifactId>

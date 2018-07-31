@@ -129,7 +129,7 @@ public class Utilities {
 		}
 
 		logger.debug("extractEmailFromJWT() validation is successful.");
-		
+
 		if (jwt != null) {
 			// Just in case someone cares, this will list all the claims that are 
 			// attached to the incoming JWT.
@@ -148,7 +148,7 @@ public class Utilities {
 						"userField " + userField + " included" );
 			}
 		}
-		
+
 		logger.debug("extractEmailFromJWT() Finished. Returning " + userField +
 				": "+userSubject);
 		return userSubject;

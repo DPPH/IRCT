@@ -107,6 +107,7 @@ public class IRCTApplication {
 	 */
 	@PostConstruct
 	public void init() throws NamingException{
+
 		logger.info("Starting IRCT Application");
 
 		/********************************************************/
