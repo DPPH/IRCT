@@ -38,6 +38,8 @@ import javax.persistence.criteria.Root;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.*;
 
 /**
@@ -278,8 +280,11 @@ public class IRCTApplication {
 			token_introspection_url = (String) ctx.lookup("global/token_introspection_url");
 			token_introspection_token = (String) ctx.lookup("global/token_introspection_token");
 			ctx.close();
-		} catch (NamingException e) {
-			verify_user_method = VERIFY_METHOD_SESSION_FILETER;
+		} catch (Exception e) {
+				//verify_user_method = VERIFY_METHOD_SESSION_FILETER;
+				verify_user_method = VERIFY_METHOD_TOKEN_INTRO;
+				token_introspection_url = "http://" + "omniledger" + ":8989/tokenIntrospection";
+				token_introspection_token = "xxx";
 		}
 
 		logger.info("verify_user_method setup as: " + verify_user_method);

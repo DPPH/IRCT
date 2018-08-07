@@ -56,6 +56,7 @@ public class SessionFilter implements Filter {
 			try {
 				User user = null;
 				String tokenString = null;
+				String projectsList = null;
 
 				String headerValue = ((HttpServletRequest)req).getHeader("Authorization");
 				if (headerValue == null) {
@@ -83,8 +84,9 @@ public class SessionFilter implements Filter {
 							|| !user.getToken().equals(tokenString))
 					    if (!IRCTApplication.VERIFY_METHOD_SESSION_FILETER.equals(irctApp.getVerify_user_method())){
                             //Get information from token introspection endpoint in 2.0
-                            user = sc.ensureUserExists(Utilities.extractUserFromTokenIntrospection((HttpServletRequest) req, this.userField, irctApp.getToken_introspection_url(), irctApp.getToken_introspection_token()));
-                        } else{
+                            user = sc.ensureUserExists(Utilities.extractUserFromTokenIntrospection((HttpServletRequest) req, "user", irctApp.getToken_introspection_url(), irctApp.getToken_introspection_token()));
+							projectsList = Utilities.extractUserFromTokenIntrospection((HttpServletRequest) req, "projects_list", irctApp.getToken_introspection_url(), irctApp.getToken_introspection_token());
+						} else{
     						user = sc.ensureUserExists(Utilities.extractEmailFromJWT((HttpServletRequest) req, irctApp.getClientSecret(), this.userField));
 						}
 				}
@@ -117,6 +119,7 @@ public class SessionFilter implements Filter {
 
 				session.setAttribute("user", user);
 				req.setAttribute("user", user);
+				session.setAttribute("projects_list", projectsList);
 
 				logger.debug("doFilter() set session attributes.");
 

@@ -106,12 +106,14 @@ public class SystemService {
 
 			// Add user details
 			User user = (User) session.getAttribute("user");
+			String projectsList = (String) session.getAttribute("projects_list");
 			if (user!=null) {
 				build.add(Json
 						.createObjectBuilder()
 						.add("userid", user.getUserId())
 						.add("username", user.getName())
-					);
+						.add("projects", projectsList)
+				);
 			}
 		} catch ( IOException | IllegalArgumentException e) {
 		    logger.error( "Reading property file erro: " + e.getMessage());

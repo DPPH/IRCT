@@ -48,7 +48,6 @@ public class SecurityController implements Serializable{
 		try{
 			user = findUserByUserId(userId);
 			logger.debug("ensureUserExists() User found. Already existed.");
-			
 		} catch(NoResultException e){
 			logger.error("ensureUserExists() UserId could not be found by `entityManager`");
 
