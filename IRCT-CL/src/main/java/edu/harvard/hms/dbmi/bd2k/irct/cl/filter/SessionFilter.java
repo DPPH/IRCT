@@ -69,6 +69,7 @@ public class SessionFilter implements Filter {
 					 * the the "Authorization" header can be made mandatory on every request.
 					 */
 					 user = (User) session.getAttribute("user");
+					 projectsList = (String) session.getAttribute("projects_list");
 				} else {
 					if (headerValue.isEmpty()){
 						logger.debug("doFilter() No token in user object, so let's add one.");
