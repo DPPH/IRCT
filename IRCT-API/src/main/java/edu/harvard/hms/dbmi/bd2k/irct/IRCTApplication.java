@@ -283,7 +283,7 @@ public class IRCTApplication {
 		} catch (Exception e) {
 				//verify_user_method = VERIFY_METHOD_SESSION_FILETER;
 				verify_user_method = VERIFY_METHOD_TOKEN_INTRO;
-				token_introspection_url = "http://" + "omniledger" + ":8989/tokenIntrospection";
+				token_introspection_url = "http://" + "omniledger" + ":8989/tokenIntrospectionLogin";
 				token_introspection_token = "xxx";
 		}
 

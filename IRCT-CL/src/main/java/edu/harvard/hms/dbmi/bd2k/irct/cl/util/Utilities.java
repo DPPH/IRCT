@@ -211,7 +211,7 @@ public class Utilities {
 	 * @return user id
 	 * @throws IOException
 	 */
-	public static String extractUserFromTokenIntrospection(HttpServletRequest req, String userField, String token_introspection_url, String token_introspection_token)
+	public static String extractUserFromTokenIntrospection(HttpServletRequest req, String userField, String token_introspection_url, String token_introspection_token, String token)
 			throws IOException {
 		logger.debug("TokenIntrospection - extractUserFromTokenIntrospection() starting...");
 
@@ -225,7 +225,6 @@ public class Utilities {
 		ObjectMapper json = IRCTApplication.objectMapper;
 		CloseableHttpClient client = IRCTApplication.CLOSEABLE_HTTP_CLIENT;
 		HttpPost post = new HttpPost(token_introspection_url);
-		String token = extractToken(req);
 		Map<String, String> tokenMap = new HashMap<String, String>();
 		tokenMap.put("token", token);
 		post.setEntity(new StringEntity(json.writeValueAsString(tokenMap)));

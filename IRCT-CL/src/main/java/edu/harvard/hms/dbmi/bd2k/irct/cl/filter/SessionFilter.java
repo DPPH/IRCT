@@ -44,7 +44,6 @@ public class SessionFilter implements Filter {
 		logger.debug("doFilter() Starting");
 		HttpServletRequest request = (HttpServletRequest) req;
 
-
 		// If processing URL /securityService/*, we are creating a session/secureSession
 		if (request.getRequestURI().endsWith("/securityService/startSession") || request.getRequestURI().endsWith("/securityService/createKey")) {
 			// Do Nothing
@@ -85,8 +84,8 @@ public class SessionFilter implements Filter {
 							|| !user.getToken().equals(tokenString))
 					    if (!IRCTApplication.VERIFY_METHOD_SESSION_FILETER.equals(irctApp.getVerify_user_method())){
                             //Get information from token introspection endpoint in 2.0
-                            user = sc.ensureUserExists(Utilities.extractUserFromTokenIntrospection((HttpServletRequest) req, "user", irctApp.getToken_introspection_url(), irctApp.getToken_introspection_token()));
-							projectsList = Utilities.extractUserFromTokenIntrospection((HttpServletRequest) req, "projects_list", irctApp.getToken_introspection_url(), irctApp.getToken_introspection_token());
+                            user = sc.ensureUserExists(Utilities.extractUserFromTokenIntrospection((HttpServletRequest) req, "user", irctApp.getToken_introspection_url(), irctApp.getToken_introspection_token(), Utilities.extractToken(request)));
+							projectsList = Utilities.extractUserFromTokenIntrospection((HttpServletRequest) req, "projects_list", irctApp.getToken_introspection_url(), irctApp.getToken_introspection_token(), Utilities.extractToken(request));
 						} else{
     						user = sc.ensureUserExists(Utilities.extractEmailFromJWT((HttpServletRequest) req, irctApp.getClientSecret(), this.userField));
 						}
